@@ -1,0 +1,64 @@
+// Include header file
+#include <iostream>
+#include <string>
+#include <vector>
+
+class CSC370HWpt1
+{
+    public:
+    static std::string encode(std::string input)
+    {
+        if (input.empty())
+        {
+            return "";
+        }
+        StringBuilder output =  java.lang.StringBuilder();
+        char currentChar = input[0];
+        int count = 1;
+        for (int i = 1; i < input.length(); i++)
+        {
+            char c = input[i];
+            if (c == currentChar)
+            {
+                count++;
+            }
+            else 
+            {
+                if (count > 4)
+                {
+                    output.append("/").append(String.format("%02d",count)).append(currentChar);
+                }
+                else 
+                {
+                    for (int j = 0; j < count; j++)
+                    {
+                        output.append(currentChar);
+                    }
+                }
+                currentChar = c;
+                count = 1;
+            }
+        }
+        if (count > 4)
+        {
+            output.append("/").append(String.format("%02d",count)).append(currentChar);
+        }
+        else 
+        {
+            for (int i = 0; i < count; i++)
+            {
+                output.append(currentChar);
+            }
+        }
+        return output.toString();
+    }
+    static void main(std::vector<std::string> &args)
+    {
+        std::cout << csc370hwpt1::CSC370HWpt1::encode("nnnnasdhjnnnnn") << std::endl;
+    }
+};
+int main(int argc, char **argv){
+	std::vector<std::string> parameter(argv + 1, argv + argc);
+	CSC370HWpt1::main(parameter); 
+	return 0;
+};
